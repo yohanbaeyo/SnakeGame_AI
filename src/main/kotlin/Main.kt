@@ -47,7 +47,7 @@ suspend fun main() {
                 }
 //                println("${mainUI.width} ${mainUI.height}")
                 println(SecondPerFrame)
-                SecondPerFrame = (450/Math.exp((mainUI.snakeBody.size-1).toDouble()/20)+ 50).toLong()
+                SecondPerFrame = (350/Math.exp((mainUI.snakeBody.size-1).toDouble()/20)+ 50).toLong()
                 mainUI.mainPanel.frameRateLabel.text = String.format("BlockPerSecond: %.3f", 1000/SecondPerFrame.toDouble())
                 delay(SecondPerFrame)
             }

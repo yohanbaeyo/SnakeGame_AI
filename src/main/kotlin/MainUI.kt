@@ -17,10 +17,6 @@ enum class Direction {
     LEFT, RIGHT, UP, DOWN
 }
 
-enum class BodyShape {
-    L, R, U, D, LD, LU, UL, UR, RU, RD, DL, DR
-}
-
 data class Position(var x: Int, var y: Int) {
     operator fun plus(b: Position): Position {
         return Position(x+b.x, y+b.y)
@@ -28,6 +24,7 @@ data class Position(var x: Int, var y: Int) {
 
     fun isInBoundary(p1:Position, p2:Position): Boolean = (p1.x<=x && x<p2.x && p1.y<=y && y<p2.y)
 }
+
 
 data class Cell(var position: Position, var type: CellType, var direction: Direction) {
     fun drawCell(g: Graphics) {
@@ -40,7 +37,7 @@ class MainUI : JFrame("Test"){
     val mainPanel = MainPanel(this)
     var tmpDirection: Direction = Direction.UP
     val isOccupied = Array(CELL_HORIZONTAL_CNT){
-        x -> Array<Boolean>(CELL_VERTICAL_CNT) {
+        x -> Array(CELL_VERTICAL_CNT) {
             y -> (x==CELL_HORIZONTAL_CNT/2 && y==CELL_VERTICAL_CNT/2)
         }
     }
@@ -111,9 +108,9 @@ class MainUI : JFrame("Test"){
             mainUI.snakeBody.forEachIndexed { index, cell ->
                 cell.drawCell(g)
             }
+
             g.color = Color.RED
             g.fillRect(mainUI.targetPosition.x * CELL_SIZE, mainUI.targetPosition.y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-//            g.drawRect(0, 0, cellHorizontalCnt * cellSize, cellVerticalCnt * cellSize)
         }
     }
 }
